@@ -1,4 +1,4 @@
-import * as resp from "../response";
+import * as resp from '../response';
 
 declare function simplegit(basePath?: string): simplegit.SimpleGit;
 
@@ -52,10 +52,10 @@ declare namespace simplegit {
       /**
        * List all branches
        *
-       * @param {Object} [options]
+       * @param {GitOptions} [options]
        * @returns {Promise<BranchSummary>}
        */
-      branch(options: string[]): Promise<BranchSummary>;
+      branch(options: GitOptions): Promise<BranchSummary>;
 
       /**
        * List of local branches
@@ -77,12 +77,12 @@ declare namespace simplegit {
        *
        * Passing "-p" will instruct cat-file to determine the object type, and display its formatted contents.
        *
-       * @param {string[]} [options]
+       * @param {GitOptions} [options]
        * @returns {Promise<string>}
        *
        * @see https://git-scm.com/docs/git-cat-file
        */
-      catFile(options: string[]): Promise<string>;
+      catFile(options: GitOptions): Promise<string>;
 
       /**
        * Adds one or more files to source control
@@ -130,10 +130,10 @@ declare namespace simplegit {
       /**
        * List all branches
        *
-       * @param {Object} [options]
+       * @param {GitOptions} [options]
        * @returns {Promise<BranchSummary>}
        */
-      branch(options: string[]): Promise<BranchSummary>;
+      branch(options: GitOptions): Promise<BranchSummary>;
 
       /**
        * List of local branches
@@ -155,12 +155,12 @@ declare namespace simplegit {
        *
        * Passing "-p" will instruct cat-file to determine the object type, and display its formatted contents.
        *
-       * @param {string[]} [options]
+       * @param {GitOptions} [options]
        * @returns {Promise<string>}
        *
        * @see https://git-scm.com/docs/git-cat-file
        */
-      catFile(options: string[]): Promise<string>;
+      catFile(options: GitOptions): Promise<string>;
 
       /**
        * Checkout a tag or revision, any number of additional arguments can be passed to the `git* checkout` command
@@ -193,38 +193,38 @@ declare namespace simplegit {
        *
        * @param {string} repoPath repository url to clone e.g. https://github.com/steveukx/git-js.git
        * @param {string} localPath local folder path to clone to.
-       * @param {string[]} [options] options supported by [git](https://git-scm.com/docs/git-clone).
+       * @param {GitOptions} [options] options supported by [git](https://git-scm.com/docs/git-clone).
        * @returns {Promise<void>}
        */
-      clone(repoPath: string, localPath: string, options?: string[]): Promise<void>;
+      clone(repoPath: string, localPath: string, options?: GitOptions): Promise<void>;
 
       /**
        * Get the diff of the current repo compared to the last commit with a set of options supplied as a string.
        *
-       * @param {string[]} [options] options supported by [git](https://git-scm.com/docs/git-diff).
+       * @param {GitOptions} [options] options supported by [git](https://git-scm.com/docs/git-diff).
        * @returns {Promise<string>} raw string result.
        */
-      diff(options?: string[]): Promise<string>;
+      diff(options?: GitOptions): Promise<string>;
 
       /**
        * Gets a summary of the diff for files in the repo, uses the `git diff --stat` format to calculate changes.
        *
        * in order to get staged (only): `--cached` or `--staged`.
        *
-       * @param {string[]} [options] options supported by [git](https://git-scm.com/docs/git-diff).
+       * @param {GitOptions} [options] options supported by [git](https://git-scm.com/docs/git-diff).
        * @returns {Promise<DiffResult>} Parsed diff summary result.
        */
-      diffSummary(options?: string[]): Promise<DiffResult>;
+      diffSummary(options?: GitOptions): Promise<DiffResult>;
 
       /**
        * Updates the local working copy database with changes from the default remote repo and branch.
        *
        * @param {string} [remote] remote to fetch from.
        * @param {string} [branch] branch to fetch from.
-       * @param {string[]} [options] options supported by [git](https://git-scm.com/docs/git-fetch).
+       * @param {GitOptions} [options] options supported by [git](https://git-scm.com/docs/git-fetch).
        * @returns {Promise<FetchResult>} Parsed fetch result.
        */
-      fetch(remote?: string, branch?: string, options?: string[]): Promise<FetchResult>;
+      fetch(remote?: string, branch?: string, options?: GitOptions): Promise<FetchResult>;
 
       /**
        * Merges from one branch to another, equivalent to running `git merge ${from} $[to}`, the `options` argument can
@@ -232,38 +232,38 @@ declare namespace simplegit {
        *
        * @param {string} from branch to merge from.
        * @param {string} to branch to merge to.
-       * @param {string[]} [options] options supported by [git](https://git-scm.com/docs/git-merge).
+       * @param {GitOptions} [options] options supported by [git](https://git-scm.com/docs/git-merge).
        * @returns {Promise<string>}
        */
-      mergeFromTo(from: string, to: string, options?: string[]): Promise<string>;
+      mergeFromTo(from: string, to: string, options?: GitOptions): Promise<string>;
 
       /**
        * Join two or more development histories together.
        *
-       * @param {string[]} [options] options supported by [git](https://git-scm.com/docs/git-merge).
+       * @param {GitOptions} [options] options supported by [git](https://git-scm.com/docs/git-merge).
        * @returns {Promise<string>}
        */
-      merge(options: string[]): Promise<string>;
+      merge(options: GitOptions): Promise<string>;
 
       /**
        * Fetch from and integrate with another repository or a local branch.
        *
        * @param {string} [remote] remote to pull from.
        * @param {string} [branch] branch to pull from.
-       * @param {string[]} [options] options supported by [git](https://git-scm.com/docs/git-pull).
+       * @param {GitOptions} [options] options supported by [git](https://git-scm.com/docs/git-pull).
        * @returns {Promise<PullResult>} Parsed pull result.
        */
-      pull(remote?: string, branch?: string, options?: string[]): Promise<PullResult>;
+      pull(remote?: string, branch?: string, options?: GitOptions): Promise<PullResult>;
 
       /**
        * Update remote refs along with associated objects.
        *
        * @param {string} [remote] remote to push to.
        * @param {string} [branch] branch to push to.
-       * @param {string[]} [options] options supported by [git](https://git-scm.com/docs/git-push).
+       * @param {GitOptions} [options] options supported by [git](https://git-scm.com/docs/git-push).
        * @returns {Promise<void>}
        */
-      push(remote?: string, branch?: string, options?: string[]): Promise<void>;
+      push(remote?: string, branch?: string, options?: GitOptions): Promise<void>;
 
       /**
        * Show the working tree status.
@@ -274,10 +274,10 @@ declare namespace simplegit {
 
       /**
        * Gets a list of tagged versions.
-       *
+       * @param {GitOptions} [options] options supported by [git](https://git-scm.com/docs/git-status).
        * @returns {Promise<TagResult>} Parsed tag list.
        */
-      tags(options?: string[]): Promise<TagResult>;
+      tags(options?: GitOptions): Promise<TagResult>;
 
       /**
        * Disables/enables the use of the console for printing warnings and errors, by default messages are not shown in
@@ -287,22 +287,44 @@ declare namespace simplegit {
        * @returns {simplegit.SimpleGit}
        */
       silent(silence?: boolean): simplegit.SimpleGit;
+
+      /**
+       * Update remote refs along with associated objects.
+       *
+       * @param {GitOptions} [options] options supported by [git](https://git-scm.com/docs/git-log).
+       * @returns {Promise<ListLogLine[]> | Promise<any>}
+       */
+      log(options?: GitOptions): Promise<ListLogLine[]> | Promise<any>;
+
    }
 
 
    // responses
    // ---------------------
-   interface BranchSummary extends resp.BranchSummary {}
+   interface BranchSummary extends resp.BranchSummary {
+   }
 
-   interface PullResult extends resp.PullResult {}
+   interface PullResult extends resp.PullResult {
+   }
 
-   interface FetchResult extends resp.FetchResult {}
+   interface FetchResult extends resp.FetchResult {
+   }
 
-   interface StatusResult extends resp.StatusResult {}
+   interface StatusResult extends resp.StatusResult {
+   }
 
-   interface DiffResult extends resp.DiffResult {}
+   interface DiffResult extends resp.DiffResult {
+   }
 
-   interface TagResult extends resp.TagResult {}
+   interface TagResult extends resp.TagResult {
+   }
+
+   interface ListLogLine extends resp.ListLogLine {
+   }
+
+   interface GitOptions extends resp.GitOptions {
+
+   }
 
 }
 
